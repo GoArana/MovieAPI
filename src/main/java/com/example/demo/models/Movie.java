@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="movies")
+
 public class Movie implements Serializable{
 	
 @Id
@@ -29,19 +32,17 @@ public class Movie implements Serializable{
 	public Movie() {
 	
 	}
-	public Movie(Integer id,String title,Integer year,
-			String director,String gender,String plot,
-			String poster,String classified,Integer rate,Double duration) {
-		this.id=id;
-		this.title=title;
-		this.year=year;
-		this.director=director;
-		this.gender=gender;
-		this.plot=plot;
-		this.poster=poster;
-		this.classified=classified;
-		this.rate=rate;
-		this.duration=duration;
+	public Movie(Integer id, String title, Integer year, String director, String gender, String plot, String poster, String classified, Integer rate, Double duration) {
+		this.id = id;
+		this.title = title;
+		this.year = year;
+		this.director = director;
+		this.gender = gender;
+		this.plot = plot;
+		this.poster = poster;
+		this.classified = classified;
+		this.rate = rate;
+		this.duration = duration;
 	
 	}
 	public Integer getId() {

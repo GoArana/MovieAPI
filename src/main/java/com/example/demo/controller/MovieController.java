@@ -18,75 +18,53 @@ import com.example.demo.models.Movie;
 import com.example.demo.services.Services;
 @RestController
 
-@RequestMapping("api")
-
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/MoviesApi")
+@CrossOrigin(origins = "http://localhost:8080")
 public class MovieController {
- private final Services service;
+ 
+	private final Services service;
 
-	
 	@Autowired
 	public MovieController(Services service) {
 	this.service=service;
 	}
 	
-
-	
-	public Services getService() {
-		return service;
-	}
 		
-	// metodo de inicio
-	@GetMapping("/inicio")
-	public String Init() {
-		return service.init();
-	}
-			
-	//metodo para mostrar las  peliculas
-	@GetMapping("/movie")
+	@GetMapping("/movies")
 	public List<Movie> getMovies(){
 		return service.getMovies();
 	}
 		
-	//metodo para generar  peliculas
 	@PostMapping("/addMovie")
 	public Movie createMovie(@RequestBody Movie movie){
 			return service.createMovie(movie);
 	}
 		
-	//metodo para eliminar las peliculas
 	@DeleteMapping("/deleteMovie/{id}")
-	public void deleteMovie( @PathVariable Integer id) {
-			service.deleteMovie(id);
+	public boolean deleteMovie( @PathVariable Integer id) {
+			return service.deleteMovie(id);
 	}
-	
-	//metodo para actualizar las peliculas
 	
 	@PutMapping("/updateMovie/{id}")
 	public Movie updateMovie(@RequestBody Movie movie, @PathVariable Integer id){
 		return service.updateMovie(movie, id);
 	}
 		
-		
-	//metodo para buscar por id
 	@GetMapping("/searchId/{id}")
-	public Optional < Movie> findId(@PathVariable Integer id) {
-		return service.findId(id);
+	public Optional < Movie> findById(@PathVariable Integer id) {
+		return service.findById(id);
 	}
 		
-	//metodo para buscar por titulo
 	@GetMapping("/searchTitle/{title}")
-	public List <Movie> findTitle(@PathVariable String title ) {
-		return service.findTitle(title);
+	public List <Movie> findByTitle(@PathVariable String title ) {
+		return service.findByTitle(title);
 	}
 			
-	//metodo para buscar las mas populares
 	@GetMapping("/searchPopular/{title}")
-		public List <Movie> findPopular( ) {
-			return service.findPopular();
+		public List <Movie> findByRate( ) {
+			return service.findByRate();
 	}
 			
-	//metodo para buscar las peliculas por clasificación
 	@GetMapping("/searchClassified/{classified}")
 	public List <Movie> findClass( @PathVariable String classified) {
 		return service.findClass(classified);

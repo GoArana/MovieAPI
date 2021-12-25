@@ -2,13 +2,15 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-public class ApiApplication {
+@ComponentScan({"com.example.demo", "controller", "service"})
+public class ApiMovies{
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiApplication.class, args);
+		SpringApplication.run(ApiMovies.class, args);
 	}
 
 }
