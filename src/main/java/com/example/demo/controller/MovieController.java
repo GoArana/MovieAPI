@@ -16,58 +16,59 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Movie;
 import com.example.demo.services.Services;
+
 @RestController
 
 @RequestMapping("/MoviesApi")
 @CrossOrigin(origins = "http://localhost:8080")
+
 public class MovieController {
  
-	private final Services service;
+	private final Services movieService;
 
 	@Autowired
-	public MovieController(Services service) {
-	this.service=service;
+	public MovieController(Services movieService) {
+	this.movieService = movieService;
 	}
-	
 		
 	@GetMapping("/movies")
 	public List<Movie> getMovies(){
-		return service.getMovies();
+		return movieService.getMovies();
 	}
 		
 	@PostMapping("/addMovie")
 	public Movie createMovie(@RequestBody Movie movie){
-			return service.createMovie(movie);
+			return movieService.createMovie(movie);
 	}
 		
 	@DeleteMapping("/deleteMovie/{id}")
 	public boolean deleteMovie( @PathVariable Integer id) {
-			return service.deleteMovie(id);
+			return movieService.deleteMovie(id);
 	}
 	
 	@PutMapping("/updateMovie/{id}")
 	public Movie updateMovie(@RequestBody Movie movie, @PathVariable Integer id){
-		return service.updateMovie(movie, id);
+		return movieService.updateMovie(movie, id);
 	}
 		
-	@GetMapping("/searchId/{id}")
+	@GetMapping("/searchID/{id}")
 	public Optional < Movie> findById(@PathVariable Integer id) {
-		return service.findById(id);
+		return movieService.findById(id);
 	}
 		
 	@GetMapping("/searchTitle/{title}")
 	public List <Movie> findByTitle(@PathVariable String title ) {
-		return service.findByTitle(title);
+		return movieService.findByTitle(title);
 	}
 			
-	@GetMapping("/searchPopular/{title}")
-		public List <Movie> findByRate( ) {
-			return service.findByRate();
+	@GetMapping("/searchRate/{title}")
+		public List <Movie> findByRate() {
+			return movieService.findByRate();
 	}
 			
 	@GetMapping("/searchClassified/{classified}")
 	public List <Movie> findClass( @PathVariable String classified) {
-		return service.findClass(classified);
+		return movieService.findClass(classified);
 	}
 					
 }

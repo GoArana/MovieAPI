@@ -10,7 +10,6 @@ import com.example.demo.repo.MovieRepo;
 @Service
 public class Services {
 	
-	
 	private final MovieRepo movieRepository;
 	@Autowired
 	public Services( MovieRepo movieRepository){
